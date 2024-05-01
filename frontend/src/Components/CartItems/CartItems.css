@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 .cartitems{
     margin: 100px 170px;
 }
@@ -67,7 +69,8 @@
     border: none;
     color: #fff;
     background: #ff5a5a;
-    font-size: 16px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
 }
@@ -85,6 +88,7 @@
 .cartitems-promobox{
     width: 504px;
     margin-top: 15px;
+    font-family: "Pixelify Sans", sans-serif;
     padding-left: 20px;
     height: 58px;
     background: #eaeaea;
@@ -94,6 +98,7 @@
     border: none;
     outline: none;
     background: transparent;
+    font-family: "Pixelify Sans", sans-serif;
     font-size: 16px;
     width: 330px;
     height: 50px;
@@ -104,6 +109,7 @@
     height: 58px;
     font-size: 16px;
     background: black;
+    font-family: "Pixelify Sans", sans-serif;
     color: white;
     cursor: pointer;
 }
