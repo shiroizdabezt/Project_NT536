@@ -14,7 +14,7 @@ const Popular = () => {
 
   return (
     <div className='Recommend'>
-        <h1>Recommend</h1>
+        <h1>RECOMMEND</h1>
         <hr />
         <div className="Recommend-item">
             {popularProducts.map((item,i)=>{

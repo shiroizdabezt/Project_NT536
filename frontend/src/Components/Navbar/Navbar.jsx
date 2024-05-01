@@ -16,7 +16,7 @@ const Navbar = () => {
     <div className='navbar'>
       <div className="nav-logo">
         <img src={logo} alt=""/>
-        <p>CODY SHOP</p>
+        <p>CODYN SHOP</p>
       </div>
       
       <u1 className="nav-menu">
@@ -31,7 +31,7 @@ const Navbar = () => {
         
         
         <Link to='/cart'>
-          <img src={cart_icon} alt=""/>
+          <img className='cart_icon' src={cart_icon} alt=""/>
         </Link>
 
         <div className="nav-cart-count">{getTotalCartItems()}</div>
