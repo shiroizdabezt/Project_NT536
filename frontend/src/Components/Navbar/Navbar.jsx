@@ -20,10 +20,9 @@ const Navbar = () => {
       </div>
       
       <u1 className="nav-menu">
-        <li onClick={()=>{setMenu("shop")}}><Link to='/'>Shop</Link> {menu==="shop"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("mens")}}><Link to='/mens'>Men</Link> {menu==="mens"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("womens")}}><Link to='/womens'>Women</Link>{menu==="womens"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("kids")}}><Link to='/kids'>Kids</Link>{menu==="kids"?<hr/>:<></>}</li>
+        <li onClick={()=>{setMenu("home")}}><Link to='/'>Home</Link> {menu==="shop"?<hr/>:<></>}</li>
+        <li onClick={()=>{setMenu("top_seller")}}><Link to='/top_seller'>Top Seller</Link> {menu==="top_seller"?<hr/>:<></>}</li>
+        <li onClick={()=>{setMenu("category")}}><Link to='/category'>Category</Link>{menu==="category"?<hr/>:<></>}</li>
       </u1>
       <div className="nav-login-cart">
         {localStorage.getItem('auth-token')
