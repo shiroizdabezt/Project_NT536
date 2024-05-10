@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { items } from "./item";
 import "./CSS/StyleCategory.css";
 import Item from '../Components/Item/Item'
+import { Link } from 'react-router-dom'
 
 export default function MultiFilters() {
   const [selectedFilters, setSelectedFilters] = useState([]);
@@ -31,7 +32,7 @@ export default function MultiFilters() {
     filterItems();
   }, [selectedFilters]);
 
-  const filterItems = () => {
+  const filterItems = (x) => {
     if (selectedFilters.length > 0) {
       let tempItems = selectedFilters.map((selectedCategory) => {
         let temp = items.filter((item) => item.Genres.includes(selectedCategory));
@@ -62,6 +63,7 @@ export default function MultiFilters() {
       <div className="items-container">
         {filteredItems.map((item, idx) => (
           <div key={`items-${idx}`} className="item">
+            <Link to={`/product/${item.Name}`}><img className="imgGame" onClick={window.scrollTo(0,0)} src={item.Image} alt=''/></Link>
             <p>{item.Name}</p>
             <p className="category">{item.Genres}</p>
           </div>

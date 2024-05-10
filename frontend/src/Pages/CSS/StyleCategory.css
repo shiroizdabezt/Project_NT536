@@ -56,10 +56,11 @@ p {
   align-items: center;
 }
 
+
 .item {
   padding: 4px 10px;
   min-width: 100px;
-  min-height: 50px;
+  min-height: 200px;
   margin: 4px 10px;
   border: 1px solid #000;
   border-radius: 5px;
