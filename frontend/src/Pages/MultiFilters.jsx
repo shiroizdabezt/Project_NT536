@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { items } from "./item";
 import "./CSS/StyleCategory.css";
+import Item from '../Components/Item/Item'
 
 export default function MultiFilters() {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [filteredItems, setFilteredItems] = useState(items);
 
-  let filters = ["Action", "Adventure", "Sports", "FPS", "Singleplayer", "Multiplayer"];
+  let filters = [];
+
+  items.forEach((x, index) =>
+    {
+      
+      if(!filters.includes(x.Genres))
+        filters.push(x.Genres)
+    }
+  )
+  
 
   const handleFilterButtonClick = (selectedCategory) => {
     if (selectedFilters.includes(selectedCategory)) {
@@ -24,7 +34,7 @@ export default function MultiFilters() {
   const filterItems = () => {
     if (selectedFilters.length > 0) {
       let tempItems = selectedFilters.map((selectedCategory) => {
-        let temp = items.filter((item) => item.category === selectedCategory);
+        let temp = items.filter((item) => item.Genres.includes(selectedCategory));
         return temp;
       });
       setFilteredItems(tempItems.flat());
@@ -36,15 +46,15 @@ export default function MultiFilters() {
   return (
     <div>
       <div className="buttons-container">
-        {filters.map((category, idx) => (
+        {filters.map((Genres, idx) => (
           <button
-            onClick={() => handleFilterButtonClick(category)}
+            onClick={() => handleFilterButtonClick(Genres)}
             className={`button ${
-              selectedFilters?.includes(category) ? "active" : ""
+              selectedFilters?.includes(Genres) ? "active" : ""
             }`}
             key={`filters-${idx}`}
           >
-            {category}
+            {Genres}
           </button>
         ))}
       </div>
@@ -52,8 +62,8 @@ export default function MultiFilters() {
       <div className="items-container">
         {filteredItems.map((item, idx) => (
           <div key={`items-${idx}`} className="item">
-            <p>{item.name}</p>
-            <p className="category">{item.category}</p>
+            <p>{item.Name}</p>
+            <p className="category">{item.Genres}</p>
           </div>
         ))}
       </div>
