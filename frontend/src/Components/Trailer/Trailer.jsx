@@ -7,7 +7,10 @@ const Trailer = (props) => {
     const products = items_1.find((e)=> e.Name === product.Name)
   return (
     <div>
-    <h1 className='trailer'>Trailer</h1>
+      <div className='trailer-hr'>
+        <h1>Trailer</h1>
+        <hr/>
+      </div>
     <div className='video-contain'>
         <iframe className= "Vid" width="1440" height="810" src={products.Video} frameborder="0" allowFullScreen allow="picture-in-picture"></iframe>
     </div>
