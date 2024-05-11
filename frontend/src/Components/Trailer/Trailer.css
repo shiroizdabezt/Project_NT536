@@ -1,0 +1,9 @@
+.video-contain{
+    display: flex;
+    justify-content: center;
+}
+
+.trailer{
+    margin-left: 168px;
+    margin-top: 25px;
+}

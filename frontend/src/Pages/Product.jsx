@@ -6,6 +6,7 @@ import { items } from "./item";
 import ProductDisplay from '../Components/ProductDisplay/ProductDisplay';
 import DescriptionBox from '../Components/DescriptionBox/DescriptionBox';
 import RelatedProducts from '../Components/RelatedProducts/RelatedProducts';
+import Trailer from '../Components/Trailer/Trailer';
 
 const Product = () => {
   const {productId} = useParams();
@@ -14,6 +15,7 @@ const Product = () => {
     <div>
       <Breadcrum product={product}/>
       <ProductDisplay product={product}/>
+      <Trailer product={product}/>
       <DescriptionBox product={product}/>
       <RelatedProducts/>
     </div>
