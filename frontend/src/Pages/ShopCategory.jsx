@@ -4,9 +4,23 @@ import './CSS/ShopCategory.css'
 import dropdown_icon from '../Components/Assets/dropdown_icon.png'
 import Item from '../Components/Item/Item'
 import axios from 'axios'
+import {items} from './item'
 import useFetch from './useFetch'
+import { Link } from 'react-router-dom'
 
 const ShopCategory = (props) => {
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(items);
+
+  let filters = [];
+
+  items.forEach((x, index) =>
+    {
+      
+      if(!filters.includes(x.Genres))
+        filters.push(x.Genres)
+    }
+  )
 
   // useEffect(() => {
   //     const fetchdata = async() => {
@@ -25,14 +39,24 @@ const ShopCategory = (props) => {
     <div className='shop-category'>
       <img className='shopcategory-banner' src={props.banner} alt="" />
       <div className="shopcategory-indexSort">
-        <p>
-          <span>Showing 1-12</span> out of 36 products
-        </p>
-        <p></p>
-        <div className="shopcategory-sort">
-          Sort by <img src={dropdown_icon} alt=""/>
-        </div>
+          <p className='show'>
+              <span>Showing 1-12</span> out of 36 products
+          </p>
+          <div className="shopcategory-sort">
+              Sort by <img src={dropdown_icon} alt=""/>
+          </div>
       </div>
+        <div className='items-container'>
+          {filteredItems.map((item, idx) => (
+            <div key={`items-${idx}`} className="item-game">
+              <Link to={`/product/${item.Name}`}><img className="imgGame" onClick={window.scrollTo(0,0)} src={item.Image} alt=''/></Link>
+              <p>{item.Name}</p>
+              <p className="category">{item.Genres}</p>
+            </div>
+        ))}
+        </div>
+        
+      
       <div className="shopcategory-products">
         {/* {all_product.map((item,i)=>{
           if (props.category===item.category) {

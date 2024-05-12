@@ -21,6 +21,7 @@
     border: 1px solid #888;
 }
 
+
 .shopcategory-indexSort p span{
     font-weight: 601;
 }
@@ -46,6 +47,28 @@
     font-size: 22px;
     font-weight: 500;
 }
+
+.items-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px 170px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 22px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .item {
+    padding: 4px 10px;
+    min-width: 100px;
+    min-height: 200px;
+    margin: 4px 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
 @media(max-width:1280px){
     .shopcategory-banner{
