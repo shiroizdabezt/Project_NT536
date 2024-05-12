@@ -6,7 +6,7 @@
     align-items: center;
     font-family: "Pixelify Sans", sans-serif;
     gap: 10px;
-    height: 90vh;
+    height: 100vh;
 }
 
 .Recommend h1{
@@ -24,7 +24,10 @@
 
 .Recommend-item{
     margin-top: 50px;
+    margin-left: 180px;
+    margin-right: 100px;
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
 }
 

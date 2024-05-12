@@ -17,10 +17,12 @@ const ShopCategory = (props) => {
   items.forEach((x, index) =>
     {
       
-      if(!filters.includes(x.Genres))
+      if(!filters.includes(x.Genres) && index <= 12)
         filters.push(x.Genres)
     }
   )
+
+  console.log(filteredItems)
 
   // useEffect(() => {
   //     const fetchdata = async() => {
@@ -30,6 +32,23 @@ const ShopCategory = (props) => {
   //     fetchdata()
   //     console.log(data)
   // }, [])
+
+  function extractYearFromDate(released_date) {
+    // Tách chuỗi để lấy 4 số cuối
+    const year = released_date.split(' ')[2];
+    return parseInt(year);
+}
+
+function sortByReleaseDate(array) {
+    // Chuyển đổi chuỗi ngày thành đối tượng Date
+    array.sort(function(a, b) {
+        const dateA = extractYearFromDate(a["Date released"]);
+        const dateB = extractYearFromDate(b["Date released"]);
+        return dateA - dateB; // Sắp xếp từ thấp đến cao (theo ngày)
+    });
+    console.log(array)
+    return array;
+}
 
   const {data, loading, error} = useFetch(`http://127.0.0.1:8000/api/games/Valorant`);
   console.log(data)
@@ -47,7 +66,7 @@ const ShopCategory = (props) => {
           </div>
       </div>
         <div className='items-container'>
-          {filteredItems.map((item, idx) => (
+          {sortByReleaseDate(filteredItems).slice(0,12).map((item, idx) => (
             <div key={`items-${idx}`} className="item-game">
               <Link to={`/product/${item.Name}`}><img className="imgGame" onClick={window.scrollTo(0,0)} src={item.Image} alt=''/></Link>
               <p>{item.Name}</p>

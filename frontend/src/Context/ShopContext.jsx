@@ -1,112 +1,112 @@
-// import React, {createContext, useEffect, useState} from "react";
+import React, {createContext, useEffect, useState} from "react";
 
 
 
-// export const ShopContext = createContext(null);
-// export const FetchData = createContext(null);
+export const ShopContext = createContext(null);
+export const FetchData = createContext(null);
 
-// // const getDefaultCart = () => {
-// //     let cart = {};
-// //     for (let index = 0; index < 300+1; index++) {
-// //         cart[index] = 0;
-// //     }
-// //     return cart;
-// // }
+const getDefaultCart = () => {
+    let cart = {};
+    for (let index = 0; index < 300+1; index++) {
+        cart[index] = 0;
+    }
+    return cart;
+}
 
-// // const ShopContextProvider = (props) => {
+const ShopContextProvider = (props) => {
 
-// //     const[all_product,setAll_Product] = useState([]);
+    const[all_product,setAll_Product] = useState([]);
 
-// //     const [cartItems, setCartItems] = useState(getDefaultCart());
+    const [cartItems, setCartItems] = useState(getDefaultCart());
 
-// //     useEffect(() => {
-// //         fetch('http://localhost:8000/api/games')
-// //         .then((response) => response.json())
-// //         .then((data) => console.log(data))
+    useEffect(() => {
+        fetch('http://localhost:8000/api/games')
+        .then((response) => response.json())
+        .then((data) => console.log(data))
         
-// //         // if(localStorage.getItem('auth-token'))
-// //         // {
-// //         //     fetch('http://localhost:8000/getcart',{
-// //         //         method:'POST',
-// //         //         headers:{
-// //         //             Accept:'application/form-data',
-// //         //             'auth-token':`${localStorage.getItem('auth-token')}`,
-// //         //             'Content-Type' : 'application/json',
-// //         //         },
-// //         //     }).then((response) => response.json())
-// //         //     .then((data) => setCartItems(data));
-// //         // }
-// //     },[])
+        if(localStorage.getItem('auth-token'))
+        {
+            fetch('http://localhost:8000/getcart',{
+                method:'POST',
+                headers:{
+                    Accept:'application/form-data',
+                    'auth-token':`${localStorage.getItem('auth-token')}`,
+                    'Content-Type' : 'application/json',
+                },
+            }).then((response) => response.json())
+            .then((data) => setCartItems(data));
+        }
+    },[])
 
-// //     const addToCart = (itemId) =>{
-// //         setCartItems((prev) => ({...prev, [itemId]:prev[itemId]+1}))
-// //         if(localStorage.getItem('auth-token')){
-// //             fetch('http://localhost:4000/addtocart', {
-// //                 method:'POST',
-// //                 headers:{
-// //                     Accept:'application/form-data',
-// //                     'auth-token' : `${localStorage.getItem('auth-token')}`,
-// //                     'Content-Type':'application/json',
-// //                 },
-// //                 body:JSON.stringify({"itemId":itemId})
-// //             })
-// //             .then((response) => response.json())
-// //             .then((data) => console.log(data));
-// //         }
-// //     }
+    const addToCart = (itemId) =>{
+        setCartItems((prev) => ({...prev, [itemId]:prev[itemId]+1}))
+        if(localStorage.getItem('auth-token')){
+            fetch('http://localhost:4000/addtocart', {
+                method:'POST',
+                headers:{
+                    Accept:'application/form-data',
+                    'auth-token' : `${localStorage.getItem('auth-token')}`,
+                    'Content-Type':'application/json',
+                },
+                body:JSON.stringify({"itemId":itemId})
+            })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+        }
+    }
 
-// //     const removeFromCart = (itemId) =>{
-// //         setCartItems((prev) => ({...prev, [itemId]:prev[itemId]-1}))
-// //         if(localStorage.getItem('auth-token'))
-// //         {
-// //             fetch('http://localhost:4000/removefromcart', {
-// //                 method:'POST',
-// //                 headers:{
-// //                     Accept:'application/form-data',
-// //                     'auth-token' : `${localStorage.getItem('auth-token')}`,
-// //                     'Content-Type':'application/json',
-// //                 },
-// //                 body:JSON.stringify({"itemId":itemId})
-// //             })
-// //             .then((response) => response.json())
-// //             .then((data) => console.log(data));
-// //         }
-// //     }
+    const removeFromCart = (itemId) =>{
+        setCartItems((prev) => ({...prev, [itemId]:prev[itemId]-1}))
+        if(localStorage.getItem('auth-token'))
+        {
+            fetch('http://localhost:4000/removefromcart', {
+                method:'POST',
+                headers:{
+                    Accept:'application/form-data',
+                    'auth-token' : `${localStorage.getItem('auth-token')}`,
+                    'Content-Type':'application/json',
+                },
+                body:JSON.stringify({"itemId":itemId})
+            })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+        }
+    }
 
-// //     const getTotalCartAmount = () => {
-// //         let totalAmount = 0;
-// //         for(const item in cartItems)
-// //         {
-// //             if(cartItems[item] > 0)
-// //             {
-// //                 let itemInfo = all_product.find((product) => product.Name === Number(item))
-// //                 totalAmount += itemInfo.new_price * cartItems[item];
-// //             }
+    const getTotalCartAmount = () => {
+        let totalAmount = 0;
+        for(const item in cartItems)
+        {
+            if(cartItems[item] > 0)
+            {
+                let itemInfo = all_product.find((product) => product.Name === Number(item))
+                totalAmount += itemInfo.new_price * cartItems[item];
+            }
             
-// //         }
-// //         return totalAmount;
-// //     }
+        }
+        return totalAmount;
+    }
 
-// //     const getTotalCartItems = () => {
-// //         let totalItem = 0;
-// //         for(const item in cartItems)
-// //         {
-// //             if(cartItems[item] > 0)
-// //             {
-// //                 totalItem+= cartItems[item];
-// //             }
-// //         }
-// //         return totalItem;
-// //     }
+    const getTotalCartItems = () => {
+        let totalItem = 0;
+        for(const item in cartItems)
+        {
+            if(cartItems[item] > 0)
+            {
+                totalItem+= cartItems[item];
+            }
+        }
+        return totalItem;
+    }
 
-// //     const contextValue = {getTotalCartItems, getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart};
+    const contextValue = {getTotalCartItems, getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart};
 
-// //     return (
-// //         <ShopContext.Provider value={contextValue}>
-// //             {props.children}
-// //         </ShopContext.Provider>
-// //     )
-// // }
+    return (
+        <ShopContext.Provider value={contextValue}>
+            {props.children}
+        </ShopContext.Provider>
+    )
+}
 //     const FetchDataProvider = (props) => {
     
 //         const[all_product,setAll_Product] = useState([]);
@@ -117,18 +117,18 @@
 //             .then((response) => response.json())
 //             .then((data) => console.log(data))
 
-//             // if(localStorage.getItem('auth-token'))
-//             // {
-//             //     fetch('http://localhost:8000/getcart',{
-//             //         method:'POST',
-//             //         headers:{
-//             //             Accept:'application/form-data',
-//             //             'auth-token':`${localStorage.getItem('auth-token')}`,
-//             //             'Content-Type' : 'application/json',
-//             //         },
-//             //     }).then((response) => response.json())
-//             //     .then((data) => setCartItems(data));
-//             // }
+//             if(localStorage.getItem('auth-token'))
+//             {
+//                 fetch('http://localhost:8000/getcart',{
+//                     method:'POST',
+//                     headers:{
+//                         Accept:'application/form-data',
+//                         'auth-token':`${localStorage.getItem('auth-token')}`,
+//                         'Content-Type' : 'application/json',
+//                     },
+//                 }).then((response) => response.json())
+//                 .then((data) => setCartItems(data));
+//             }
 //         },[])
 //         }
 //             const contextValue = {all_product};
@@ -141,4 +141,4 @@
 // }
 
 
-// export default FetchDataProvider;
+export default ShopContextProvider;

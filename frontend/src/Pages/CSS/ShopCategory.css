@@ -72,6 +72,16 @@
 }
 
 
+.items-container div item-game:hover{
+    box-shadow: 3px 3px 0px 0px rgba(237, 233, 157);
+}
+
+.active {
+    background-color: #1e293b;
+    color: #fff;
+  }
+
+
 @media(max-width:1280px){
     .shopcategory-banner{
         margin: 20px auto;

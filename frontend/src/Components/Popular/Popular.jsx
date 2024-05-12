@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Popular.css'
 import Item from '../Item/Item'
+import { items } from "../../Pages/item";
 
 const Popular = () => {
 
@@ -17,9 +18,9 @@ const Popular = () => {
         <h1>RECOMMEND</h1>
         <hr />
         <div className="Recommend-item">
-            {/* {popularProducts.map((item,i)=>{
-                return <Item key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price} />
-            })} */}
+            {items.slice(0,10).map((item,i) =>{
+                return <Item Name={item.Name} Image={item.Image}/>
+            })}
         </div>
     </div>
   )
