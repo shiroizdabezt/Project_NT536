@@ -10,6 +10,18 @@ export default function MultiFilters() {
 
   let filters = [];
 
+  function FetchDataProvider(){
+    const[all_product,setAll_Product] = useState([]);
+    
+    useEffect(() => {
+      fetch('http://127.0.0.1:8000/api/games/')
+      .then(response => response.json())
+      .then(data => setAll_Product(data))
+      .catch(err => console.log(err))
+    }, [])
+  }
+
+
   items.forEach((x, index) =>
     {
       

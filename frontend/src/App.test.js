@@ -5,9 +5,13 @@ import ShopContextProvider from './Context/ShopContext';
 
 test('renders learn react link', () => {
   //const {getTotalCartItems, getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart} = useContext(ShopContext);
-  render(<ShopContextProvider>
+  // render(<ShopContextProvider>
+    
+  // </ShopContextProvider>);
+  render(
     <App/>
-  </ShopContextProvider>);
+  )
+  
   //const linkElement = screen.getByText(/learn react/i);
   //expect(linkElement).toBeInTheDocument();
 });

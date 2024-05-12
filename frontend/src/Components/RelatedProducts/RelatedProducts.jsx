@@ -9,9 +9,9 @@ const RelatedProducts = () => {
         <h1>Related Products</h1>
         <hr />
         <div className="relatedproducts-item">
-            {data_product.map((item,i) =>{
+            {/* {data_product.map((item,i) =>{
                 return <Item key={i} id={item.Name} image={item.Image} />
-            })}
+            })} */}
         </div>
     </div>
   )
