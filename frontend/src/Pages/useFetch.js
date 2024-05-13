@@ -7,7 +7,7 @@ const useFetch = (url) => {
   // State "data" để lưu trữ dữ liệu từ API
   const [data, setData] = useState([]);
   // State "loading" để theo dõi trạng thái loading của yêu cầu API
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   // State "error" để theo dõi lỗi nếu có khi yêu cầu API
   const [error, setError] = useState(false);
   // Sử dụng useEffect để fetch data khi render page

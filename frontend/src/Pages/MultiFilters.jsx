@@ -3,35 +3,52 @@ import { items } from "./item";
 import "./CSS/StyleCategory.css";
 import Item from '../Components/Item/Item'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import useFetch from "./useFetch";
 
 export default function MultiFilters() {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [filteredItems, setFilteredItems] = useState(items);
 
-  let filters = [];
 
-  function FetchDataProvider(){
-    const[all_product,setAll_Product] = useState([]);
+  const {genres, loading, error} = useFetch(`http://18.136.120.49/api/games/genres/`);
+  const {games, loading2, error2} = useFetch(`http://18.136.120.49/api/games/get_all_games/`);
+
+  console.log(loading?"not loading":genres)
+
+  //const [filters, setfilters] = useState();
+
+  let filters = []
+  // const [filters, setfilters] = useState();
+
+  //setfilters(data)
+  //console.log(filters)
+  // function FetchDataProvider(){
+  //   const[all_product,setAll_Product] = useState([]);
     
-    useEffect(() => {
-      fetch('http://127.0.0.1:8000/api/games/')
-      .then(response => response.json())
-      .then(data => setAll_Product(data))
-      .catch(err => console.log(err))
-    }, [])
-  }
+    // useEffect(() => {
+    //   fetch('http://18.136.120.49/api/games/genres/')
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log(data.data)
+    //     setfilters(data.data)
+    //   })
+    //   .catch(err => console.log(err))
+    // }, [])
+  
+    // console.log(filters)
 
-
-  items.forEach((x, index) =>
-    {
+  // items.forEach((x, index) =>
+  //   {
       
-      if(!filters.includes(x.Genres))
-        filters.push(x.Genres)
-    }
-  )
+  //     if(!filters.includes(x.Genres))
+  //       filters.push(x.Genres)
+  //   }
+  // )
   
 
   const handleFilterButtonClick = (selectedCategory) => {
+
     if (selectedFilters.includes(selectedCategory)) {
       let filters = selectedFilters.filter((el) => el !== selectedCategory);
       setSelectedFilters(filters);
@@ -47,7 +64,7 @@ export default function MultiFilters() {
   const filterItems = (x) => {
     if (selectedFilters.length > 0) {
       let tempItems = selectedFilters.map((selectedCategory) => {
-        let temp = items.filter((item) => item.Genres.includes(selectedCategory));
+        let temp = genres.filter((item) => item.includes(selectedCategory));
         return temp;
       });
       setFilteredItems(tempItems.flat());
@@ -58,8 +75,27 @@ export default function MultiFilters() {
 
   return (
     <div>
-      <div className="buttons-container">
-        {filters.map((Genres, idx) => (
+      {/* <div className="buttons-container">
+      {
+        loading ? "loading" : <>
+        {
+          genres.map((Genres, idx) => (
+            <button
+            onClick={() => handleFilterButtonClick(genres[idx])}
+            className={`button ${
+              selectedFilters?.includes(genres[idx]) ? "active" : ""
+            }`}
+            key={`filters-${Genres}`}
+          >
+            {genres[idx]}
+          </button>
+          ))
+        }
+        </>
+      }
+      </div> */}
+      
+        {/* {filters.map((Genres, idx) => (
           <button
             onClick={() => handleFilterButtonClick(Genres)}
             className={`button ${
@@ -70,9 +106,9 @@ export default function MultiFilters() {
             {Genres}
           </button>
         ))}
-      </div>
+       */}
 
-      <div className="items-container">
+      {/* <div className="items-container">
         {filteredItems.map((item, idx) => (
           <div key={`items-${idx}`} className="item">
             <Link to={`/product/${item.Name}`}><img className="imgGame" onClick={window.scrollTo(0,0)} src={item.Image} alt=''/></Link>
@@ -80,7 +116,7 @@ export default function MultiFilters() {
             <p className="category">{item.Genres}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
